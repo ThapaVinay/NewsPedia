@@ -1,78 +1,92 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import Spinner from './Spinner'
+import PropTypes from 'prop-types'
 
 export class News extends Component {
 
-    articles = [
-        {
-            "source": {
-                "id": "techcrunch",
-                "name": "TechCrunch"
-            },
-            "author": "Jagmeet Singh",
-            "title": "Disney's Hotstar to offer free mobile cricket streaming in India to take on Reliance's JioCinema",
-            "description": "Disney's Hotstar will offer free cricket streaming to mobile users in India, following Reliance's JioCinema comparable approach.",
-            "url": "https://techcrunch.com/2023/06/09/disney-hotstar-free-mobile-cricket-streaming-jiocinema/",
-            "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/06/GettyImages-1237878467.jpg?resize=1200,900",
-            "publishedAt": "2023-06-09T13:09:20Z",
-            "content": "Disney’s Hotstar will offer free streaming of cricket tournaments to mobile users in India, following Reliance’s JioCinema comparable approach that helped it attract millions of viewers.\r\nOn Friday, … [+2162 chars]"
-        },
-        {
-            "source": {
-                "id": "espn-cric-info",
-                "name": "ESPN Cric Info"
-            },
-            "author": null,
-            "title": "PCB hands Umar Akmal three-year ban from all cricket | ESPNcricinfo.com",
-            "description": "Penalty after the batsman pleaded guilty to not reporting corrupt approaches | ESPNcricinfo.com",
-            "url": "http://www.espncricinfo.com/story/_/id/29103103/pcb-hands-umar-akmal-three-year-ban-all-cricket",
-            "urlToImage": "https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1099495_800x450.jpg",
-            "publishedAt": "2020-04-27T11:41:47Z",
-            "content": "Umar Akmal's troubled cricket career has hit its biggest roadblock yet, with the PCB handing him a ban from all representative cricket for three years after he pleaded guilty of failing to report det… [+1506 chars]"
-        },
-        {
-            "source": {
-                "id": "espn-cric-info",
-                "name": "ESPN Cric Info"
-            },
-            "author": null,
-            "title": "What we learned from watching the 1992 World Cup final in full again | ESPNcricinfo.com",
-            "description": "Wides, lbw calls, swing - plenty of things were different in white-ball cricket back then | ESPNcricinfo.com",
-            "url": "http://www.espncricinfo.com/story/_/id/28970907/learned-watching-1992-world-cup-final-full-again",
-            "urlToImage": "https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1219926_1296x729.jpg",
-            "publishedAt": "2020-03-30T15:26:05Z",
-            "content": "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]"
-        }
-    ]
 
-    // we define state inside the constructor
-    constructor()
-    {
+    static defaultProps = {
+        country : 'in',
+        pageSize : 20,
+        category : "general"
+    }
+
+    static propTypes = {
+        country : PropTypes.string,
+        pageSize : PropTypes.number,
+        category : PropTypes.string,
+    }
+    
+    // we define use state inside the constructor
+    constructor() {
         super();
-        console.log("hello world");
         this.state = {
-            article : this.article,
-            loading : false
+            articles: [],
+            loading: false,
+            page : 1
         }
+    }
+
+    // it will run at the end after the render function
+    async componentDidMount(){
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2f8228e3f6d64628afcb69b98a66bf61&page=1 &pageSize=${this.props.pageSize}`
+        this.setState({ loading : true})
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        this.setState({
+            articles : parsedData.articles,
+            totalResults : parsedData.totalResults,
+            loading : false
+        })
+    }
+
+    handlePrevClick = async () => {
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2f8228e3f6d64628afcb69b98a66bf61&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`
+        this.setState({ loading : true})
+        let data = await fetch(url);
+        let parsedData = await data.json();
+
+        this.setState({
+            articles : parsedData.articles,
+            page : this.state.page - 1,
+            loading : false
+        })
+
+    }
+
+    handleNextClick = async () => {
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2f8228e3f6d64628afcb69b98a66bf61&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`
+        this.setState({ loading : true})
+        let data = await fetch(url);
+        let parsedData = await data.json();
+
+        this.setState({
+            articles : parsedData.articles,
+            page : this.state.page + 1,
+            loading : false
+        })
     }
 
     render() {
         return (
             <div className="container my-3">
-                <h2>NewsPedia - Top Headlines</h2>
+                <h1 className="text-center" style={{margin:"30px"}}> <strong>NewsPedia - Top Headlines</strong></h1>
+                {this.state.loading && <Spinner/>}
                 <div className='row'>
-                    <div className="col-md-4">
-                        <NewsItem title="myTitle" description="mydesc1" imageUrl = "https://techcrunch.com/wp-content/uploads/2023/06/GettyImages-1237878467.jpg?resize=1200,900"/>
-                    </div>
-                    <div className="col-md-4">
-                        <NewsItem title="myTitle" description="mydesc" />
-                    </div>
-                    <div className="col-md-4">
-                        <NewsItem title="myTitle" description="mydesc" />
-                    </div>
+                    {!this.state.loading && this.state.articles.map((element) => {
+
+                        return (<div className="col-md-4" key= {element.url}>
+                            <NewsItem  title= {element.title ? element.title : ""} description= {element.description ? element.description : ""} imageUrl= {element.urlToImage} newsUrl = {element.url}/>
+                        </div>)
+                    })}
+                </div> 
+                <div className="container d-flex justify-content-between">
+                <button disabled = {this.state.page <=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick} > &larr; Previous</button>
+                <button disabled = {this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handleNextClick} >Next &rarr; </button>
                 </div>
             </div>
-        )
+         )
     }
 }
 

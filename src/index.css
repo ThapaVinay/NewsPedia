@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+
+
+.navbar{
+  font-size: 17px;
+  padding:9px 12px;
+}
+
+
+
+
+.social-bar i{
+  color: black;
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.newslogo{
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+  height: 130px;
+  margin-bottom: -15px;
+}

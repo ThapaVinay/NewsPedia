@@ -59,7 +59,7 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className="text-center" style={{ fontSize: "30px", fontFamily: 'Lato, sans-serif', margin: "30px 0px", marginTop: "90px" }}> <strong>NewsPedia - Top {capitalize(props.category)} Headlines</strong></h1>
+            <h2 className="text-center" style={{ fontSize: "30px", fontFamily: 'Lato, sans-serif', margin: "30px 0px", marginTop: "90px" }}> <strong>NewsPedia - Top {capitalize(props.category)} Headlines</strong></h2>
             {loading && <Spinner />}
             {articles !== undefined ? 
             <InfiniteScroll
@@ -79,9 +79,10 @@ const News = (props) => {
                     </div>
                 </div>
 
-            </InfiniteScroll> : (
-            <p>No articles to display.</p>
-        )}
+            </InfiniteScroll> : 
+            (
+                <p>No articles to display.</p>
+            )}
 
         </>
     )

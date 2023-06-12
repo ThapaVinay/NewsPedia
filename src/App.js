@@ -10,6 +10,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import Footer from './components/Footer';
 
 const App = () => {
   const pageSize = 15;
@@ -35,6 +36,7 @@ const App = () => {
             <Route exact path="/sports" element={<News setProgress={setProgress} apiKey={apiKey} key="sports" pageSize={pageSize} country="in" category="sports" />} />
             <Route exact path="/technology" element={<News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={pageSize} country="in" category="technology" />} />
           </Routes>
+          <Footer/>
         </Router>
       </div>
     )

@@ -31,3 +31,19 @@ export default class App extends Component {
     )
   }
 }
+
+
+
+
+
+
+
+
+
+
+// Methods in react component lifecycle ->
+// 1. render()
+// 2. componentDidMount()
+// 3. componentDidUpdate()
+// 4. componentWillUnmount()
+

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/NewsPedia/static/css/main.7e4adbcc.css",
+    "main.js": "/NewsPedia/static/js/main.ba4d4680.js",
+    "static/js/787.66a4299e.chunk.js": "/NewsPedia/static/js/787.66a4299e.chunk.js",
+    "static/media/loading.gif": "/NewsPedia/static/media/loading.8fdda4b07c3c950ca0bb.gif",
+    "index.html": "/NewsPedia/index.html",
+    "main.7e4adbcc.css.map": "/NewsPedia/static/css/main.7e4adbcc.css.map",
+    "main.ba4d4680.js.map": "/NewsPedia/static/js/main.ba4d4680.js.map",
+    "787.66a4299e.chunk.js.map": "/NewsPedia/static/js/787.66a4299e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7e4adbcc.css",
+    "static/js/main.ba4d4680.js"
+  ]
+}

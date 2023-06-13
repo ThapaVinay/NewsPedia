@@ -47,6 +47,7 @@ function Demo(props) {
 
   return (
     <>
+
       <h2 className="text-center" style={{ fontSize: "30px", fontFamily: 'Lato, sans-serif', margin: "30px 0px", marginTop: "90px" }}> <strong>NewsPedia - Demo Headlines</strong></h2>
 
       <div className="container my-3">

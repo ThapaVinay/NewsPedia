@@ -83,7 +83,7 @@ const News = (props) => {
                     <div class="text-center">
                         <img src={error} class="rounded newslogo" alt="..." />
                         <p className="text-center" style={{ fontSize: "30px", fontFamily: 'Lato, sans-serif', margin: "30px 0px", marginTop: "90px" }}>No articles to display</p>
-                        <Link type="button" class="btn btn-success" to = "/demo"><b>Demo Site</b></Link>
+                        <Link type="button" class="btn btn-success" to = "/NewsPedia/demo"><b>Demo Site</b></Link>
                     </div>
                 )}
 

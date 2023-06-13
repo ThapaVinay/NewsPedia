@@ -19,13 +19,13 @@ const Navbar = () =>  {
                                     <Link className="nav-link" to="/about">About</Link>
                                 </li> */}
                                 {/* <li className='nav-item'> <Link className='nav-link' to="/about"> Business</Link></li> */}
-                                <li className='nav-item'> <Link className='nav-link' to="/entertainment"> Entertainment</Link></li>
-                                <li className='nav-item'> <Link className='nav-link' to="/business"> Business</Link></li>
-                                <li className='nav-item'> <Link className='nav-link' to="/health"> Health</Link></li>
-                                <li className='nav-item'> <Link className='nav-link' to="/science"> Science</Link></li>
-                                <li className='nav-item'> <Link className='nav-link' to="/sports"> Sports</Link></li>
-                                <li className='nav-item'> <Link className='nav-link' to="/technology"> Technology</Link></li>
-                                <li className='nav-item'> <Link className='nav-link' to="/about"> About</Link></li>
+                                <li className='nav-item'> <Link className='nav-link' to="/NewsPedia/entertainment"> Entertainment</Link></li>
+                                <li className='nav-item'> <Link className='nav-link' to="/NewsPedia/business"> Business</Link></li>
+                                <li className='nav-item'> <Link className='nav-link' to="/NewsPedia/health"> Health</Link></li>
+                                <li className='nav-item'> <Link className='nav-link' to="/NewsPedia/science"> Science</Link></li>
+                                <li className='nav-item'> <Link className='nav-link' to="/NewsPedia/sports"> Sports</Link></li>
+                                <li className='nav-item'> <Link className='nav-link' to="/NewsPedia/technology"> Technology</Link></li>
+                                <li className='nav-item'> <Link className='nav-link' to="/NewsPedia/about"> About</Link></li>
                             </ul>
                         </div>
                     </div>

@@ -3,7 +3,8 @@ import NewsItem from './NewsItem'
 import Spinner from './Spinner'
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import error from './error.png'
+import {Link} from "react-router-dom";
 
 const News = (props) => {
 
@@ -61,28 +62,32 @@ const News = (props) => {
         <>
             <h2 className="text-center" style={{ fontSize: "30px", fontFamily: 'Lato, sans-serif', margin: "30px 0px", marginTop: "90px" }}> <strong>NewsPedia - Top {capitalize(props.category)} Headlines</strong></h2>
             {loading && <Spinner />}
-            {articles !== undefined ? 
-            <InfiniteScroll
-                dataLength={articles.length}
-                next={fetchMoreData}
-                hasMore={articles.length !== totalResults}
-                loader={<Spinner />}>
+            {articles !== undefined ?
+                <InfiniteScroll
+                    dataLength={articles.length}
+                    next={fetchMoreData}
+                    hasMore={articles.length !== totalResults}
+                    loader={<Spinner />}>
 
-                <div className="container my-3">
-                    <div className='row'>
-                        {articles.map((element) => {
+                    <div className="container my-3">
+                        <div className='row'>
+                            {articles.map((element) => {
 
-                            return <div className="col-md-4" key={element.url}>
-                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
-                            </div>
-                        })}
+                                return <div className="col-md-4" key={element.url}>
+                                    <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+                                </div>
+                            })}
+                        </div>
                     </div>
-                </div>
 
-            </InfiniteScroll> : 
-            (
-                <p>No articles to display.</p>
-            )}
+                </InfiniteScroll> :
+                (
+                    <div class="text-center">
+                        <img src={error} class="rounded newslogo" alt="..." />
+                        <p className="text-center" style={{ fontSize: "30px", fontFamily: 'Lato, sans-serif', margin: "30px 0px", marginTop: "90px" }}>No articles to display</p>
+                        <Link type="button" class="btn btn-success" to = "/demo"><b>Demo Site</b></Link>
+                    </div>
+                )}
 
         </>
     )

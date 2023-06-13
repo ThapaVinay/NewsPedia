@@ -3,7 +3,8 @@ import './App.css';
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import News from './components/News';
-import LoadingBar from 'react-top-loading-bar'
+import LoadingBar from 'react-top-loading-bar';
+import Demo from './components/Demo';
 
 import {
   BrowserRouter as Router,
@@ -35,6 +36,7 @@ const App = () => {
             <Route exact path="/science" element={<News setProgress={setProgress} apiKey={apiKey} key="science" pageSize={pageSize} country="in" category="science" />} />
             <Route exact path="/sports" element={<News setProgress={setProgress} apiKey={apiKey} key="sports" pageSize={pageSize} country="in" category="sports" />} />
             <Route exact path="/technology" element={<News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={pageSize} country="in" category="technology" />} />
+            <Route exact path="/demo" element={<Demo setProgress={setProgress} pageSize={pageSize}/>} />
           </Routes>
           <Footer/>
         </Router>
